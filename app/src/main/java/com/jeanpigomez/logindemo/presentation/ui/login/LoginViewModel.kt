@@ -19,7 +19,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
     private val _loginUserFlow = Channel<Result<LoginResponse>>(Channel.BUFFERED)
     val loginUserFlow = _loginUserFlow.receiveAsFlow()
 
-    fun doLoginUser(username: String, password: String){
+    fun doLoginUser(username: String, password: String) {
         viewModelScope.launch {
             loginUseCase.invoke(LoginRequest(username, password))
                 .catch { e ->
